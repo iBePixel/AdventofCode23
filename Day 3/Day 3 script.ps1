@@ -1,5 +1,5 @@
 $example = Get-Content -Path 'C:\users\ElliottLamb\OneDrive - SquaredUp\documents\github\adventofcode23\day 3\input.txt'
-$symbols = '\@|\*|\+|\=|\$|\/|\\|\&|\%|\-|\#'
+$symbols = '@|\*|\+|\=|$|/|&|%|-|#'
 $result = 0
 
 For ($i =0; $i -lt 140; $i++){
@@ -9,8 +9,6 @@ For ($i =0; $i -lt 140; $i++){
     ForEach ($match in $matches) {
         $numStart = $match.index
         $numEnd = $match.index + $match.length -1
-        Write-Host $numStart
-        Write-Host $numEnd
 
         if ($example[$i -1][($numStart -1)..($numEnd +1)] -match $symbols ){
             $result += $match.value
@@ -24,7 +22,11 @@ For ($i =0; $i -lt 140; $i++){
         elseif ($example[$i + 1][($numEnd -1)..($numEnd +1)]){
             $result += $match.value
         }
+        else {
+
+        }
     }
+    Write-Host $result
 }
 
 $result 

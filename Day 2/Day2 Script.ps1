@@ -5,6 +5,8 @@ $green = 13
 $result = 0
 $games = @()
 
+$part2Result = 0
+
 ForEach($game in $input){
     $games += $game -replace('Game.+:', '')
 }
@@ -36,6 +38,12 @@ for($i = 0; $i -lt 100; $i++){
         $redArr += $redHand
         $blueArr += $blueHand
     }
+    $maximumBlue = ($blueArr | Measure-Object -Maximum).Maximum
+    $maximumRed = ($redArr | Measure-Object -Maximum).Maximum
+    $maximumGreen = ($greenArr | Measure-Object -Maximum).Maximum
+
+    $part2Result += ($maximumBlue * $maximumRed * $maximumGreen)
+
     if ($redArr -gt $red){
     }
     elseif ($blueArr -gt $blue){
@@ -48,3 +56,4 @@ for($i = 0; $i -lt 100; $i++){
 }
 
 $result 
+$part2Result

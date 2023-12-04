@@ -1,4 +1,4 @@
-$input = Get-Content -Path .\documents\'github\adventofcode23\day 2\input.txt'
+$input = Get-Content -Path 'C:\users\ElliottLamb\OneDrive - SquaredUp\documents\github\adventofcode23\day 2\input.txt'
 $red = 12
 $blue = 14
 $green = 13
@@ -10,7 +10,7 @@ ForEach($game in $input){
 }
 
 
-for($i = 0; $i -lt 99; $i++){
+for($i = 0; $i -lt 100; $i++){
     $CurrGame = $games[$i].split(';')
     $redArr = @()
     $blueArr = @()
@@ -18,20 +18,33 @@ for($i = 0; $i -lt 99; $i++){
 
     for($j = 0; $j -lt $CurrGame.length; $j++){
         $splitItems = $currGame[$j] -split','
+        $redHand = 0
+        $blueHand = 0
+        $greenHand = 0
         ForEach ($val in $splitItems) {
             if($val -match 'red'){
-                $redArr += $val -replace '\D+'
+                $redHand += $val -replace '\D+'
             }
             elseif($val -match 'green'){
-                $greenArr += $val -replace '\D+'
+                $greenHand += $val -replace '\D+'
             }
             elseif($val -match 'blue'){
-                $blueArr += $val -replace '\D+' 
+                $blueHand += $val -replace '\D+'
             }
-            Write-Host $blueArr
-            Write-Host $redArr
-            Write-Host $greenArr
         }
-        
+        $greenArr += $greenHand
+        $redArr += $redHand
+        $blueArr += $blueHand
+    }
+    if ($redArr -gt $red){
+    }
+    elseif ($blueArr -gt $blue){
+    }
+    elseif($greenArr -gt $green){
+    }
+    else{
+        $result += ($i + 1)
     }
 }
+
+$result 

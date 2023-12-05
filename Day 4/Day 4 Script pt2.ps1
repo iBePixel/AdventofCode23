@@ -1,19 +1,19 @@
 $input = Get-Content -Path 'C:\users\ElliottLamb\OneDrive - SquaredUp\documents\github\adventofcode23\day 4\input.txt'
 $input = $input -replace 'Card.+\:', ''
 $total = 0
+$counter = 0
 
-
-ForEach ($line in $input){
+For ($j = 0; $j -lt $input.length; $j++){
     $winningNos = @()
     $myNos = @()
     $score = 0
 
-    $WinningVal = $line -replace '.{77}$'
+    $WinningVal = $input[$j] -replace '.{77}$'
     $WinningVal = $WinningVal -replace '  ', ' '
     $WinningVal = $WinningVal.TrimStart()
     $WinningVal = $WinningVal -split " "
 
-    $myVals = $line -replace '^.{32}'
+    $myVals = $input[$j] -replace '^.{32}'
     $myVals = $myVals -replace '  ', ' '
     $myVals = $myVals.TrimStart()
     $myVals = $myVals -split " "
@@ -28,17 +28,16 @@ ForEach ($line in $input){
 
     ForEach ($number in $myNos){
         if ($number -in $WinningNos){
-            if ($score -eq 0){
                 $score = $score + 1
-            }
-            else {
-                $score = ($score * 2)
-            }
         }
     }
-
-    $total = $total + $score 
-    $total
+    if ($score -gt 0){
+        for($i = 1; $i -lt $score; $i++){
+            $input += $input[$counter + $i]
+        }
+    $counter = $counter +1
+    $total = $total + 1
+    }
 }
 
 $total 

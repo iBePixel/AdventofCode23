@@ -3,7 +3,6 @@ $symbols = '\@|\*|\+|\=|\$|\/|\&|\%|\-|\#'
 $result = 0
 
 For ($i =0; $i -lt 140; $i++){
-    #Write-Host ($example[$i] | Select-String "\d+" -AllMatches).matches.value
     $matches = ($example[$i] | Select-String "\d+" -AllMatches).matches 
     
     ForEach ($match in $matches) {
@@ -13,33 +12,15 @@ For ($i =0; $i -lt 140; $i++){
         For ($j= $numStart -1; $j -lt $numEnd +2; $j++){
             if ($example[$i -1][$j] -match $symbols){
                 $result += $match.value
-                Write-Host "found" + $example[$i -1][$j] $match.value
             }
             elseif ($example[$i][$j] -match $symbols){
                 $result += $match.value
-                Write-Host "found" + $example[$i][$j] $match.value
             }
             elseif ($example[$i + 1][$j] -match $symbols){
                 $result += $match.Value
-                Write-Host "found" + $example[$i +1][$j] $match.value
             }
         }
-
-        #if ($example[$i -1][($numStart)..($numEnd)] -match $symbols ){
-         #   $result += $match.value
-          #  Write-Host "help"
-        #}
-        #elseif ($example[$i][$numStart -1] -match $symbols){
-         #   $result += $match.value
-        #}
-        #elseif ($example[$i][$numEnd +1] -match $symbols){
-         #   $result += $match.value
-        #}
-        #else {
-
-        #}
     }
-    Write-Host $result
 }
 
 $result 

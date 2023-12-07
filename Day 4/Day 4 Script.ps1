@@ -1,4 +1,4 @@
-$input = Get-Content -Path 'C:\users\ElliottLamb\OneDrive - SquaredUp\documents\github\adventofcode23\day 4\input.txt'
+$input = Get-Content -Path 'C:\users\pixel\documents\github\adventofcode23\day 4\input.txt'
 $input = $input -replace 'Card.+\:', ''
 $total = 0
 
